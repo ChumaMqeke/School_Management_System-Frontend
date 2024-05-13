@@ -1,0 +1,41 @@
+<div class="container-fluid m-0 p-0 bg-success" style="height: 100vh; overflow: hidden !important;">
+  
+    <!-- Side row -->
+    <div class="row my-5">
+
+    <!--Columns -->
+    <div class="col"> 
+        <h2 style="color: white; font-weight: bold;">Student Management System</h2>
+    </div>
+    
+     <div class="col-md-3 my-5 me-5" style="height: 400px;">
+        <div class="card shadow p-4" style="height: 400px !important;">
+
+        <form [formGroup]="adminLoginData" (ngSubmit)="adminLogin()">
+            <h4 class="text-success">Admin Login</h4>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="username" aria-describedby="emailHelp" formControlName="username">
+                <div *ngIf="adminLoginData.get('username')?.invalid && (adminLoginData.get('username')?.dirty || adminLoginData.get('username')?.touched)" class="text-danger">
+                  This field is required!
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" aria-describedby="passwordlHelp" formControlName="password">
+                <div *ngIf="adminLoginData.get('password')?.invalid && (adminLoginData.get('password')?.dirty || adminLoginData.get('password')?.touched)" class="text-danger">
+                  This field is required!
+                </div>
+              </div>
+            
+            <button type="submit" class="btn btn-outline-success me-2 ms-auto" [disabled]="!adminLoginData.valid">Login</button>
+
+          </form>
+
+     </div>
+    </div>
+  </div>
+</div>
+

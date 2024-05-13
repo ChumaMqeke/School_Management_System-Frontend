@@ -1,0 +1,123 @@
+<div class="container-fluid">
+    <!-- First row -->
+    <div class="row text-center text-primary mt-3">
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <div class="card shadow bg-info">
+            <div class="card-body">
+              <h6>Add Parent</h6>
+              <p>+</p>
+            </div>
+          </div>
+        </a>
+      </div>
+  
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-primary">
+          <div class="card shadow bg-info">
+            <div class="card-body">
+              <h6>Total Parents</h6>
+              <p>{{ totalParents }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Second row -->
+    <div class="row pe-2 mt-3">
+      <div class="col-sm-12 text-center">
+        <div class="card-shadow">
+          <div class="card-body">
+            <h6 class="text-primary mb-4">List of Parents</h6>
+  
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="table table-hover mt-3 custom-table">
+                <!-- Table head with custom styling -->
+                <thead class="table-heading">
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Contacts</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Relationship</th>
+                    <th scope="col">Address</th>
+                    
+                  </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                  <tr *ngFor="let parent of allParents">
+                    <td>{{ parent.first_name }}</td>
+                    <td>{{ parent.last_name }}</td>
+                    <td>{{ parent.contact }}</td>
+                    <td>{{ parent.student_name }}</td>
+                    <td>{{ parent.relationship }}</td>
+                    <td>{{ parent.address }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-secondary m-2">View</button>
+                      <button type="button" class="btn btn-outline-secondary m-2">Edit</button>
+                      <button type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Add Parent Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Add Parent</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form -->
+            <form [formGroup]="parentDetailsForm" (ngSubmit)="addNewParent()">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="first_name" placeholder="First Name" formControlName="first_name">
+                <label for="first_name">First Name</label>
+                <div *ngIf="parentDetailsForm.get('first_name')?.invalid && parentDetailsForm.get('first_name')?.dirty" class="text-danger">
+                  First Name is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name">
+                <label for="last_name">Last Name</label>
+                <div *ngIf="parentDetailsForm.get('last_name')?.invalid && parentDetailsForm.get('last_name')?.dirty" class="text-danger">
+                  Last Name is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="contacts" placeholder="Contacts" formControlName="contacts">
+                <label for="contacts">Contacts</label>
+                <div *ngIf="parentDetailsForm.get('contacts')?.invalid && parentDetailsForm.get('contacts')?.dirty" class="text-danger">
+                  Contacts is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="relationship" placeholder="Relationship" formControlName="relationship">
+                <label for="relationship">Relationship</label>
+                <div *ngIf="parentDetailsForm.get('relationship')?.invalid && parentDetailsForm.get('relationship')?.dirty" class="text-danger">
+                  Relationship is required.
+                </div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Add Parent</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

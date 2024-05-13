@@ -1,0 +1,153 @@
+<div class="container-fluid">
+    <!-- First row -->
+    <div class="row text-center text-primary mt-3">
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <div class="card shadow bg-info">
+            <div class="card-body">
+              <h6>Add Student</h6>
+              <p>+</p>
+            </div>
+          </div>
+        </a>
+      </div>
+  
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-primary">
+          <div class="card shadow bg-info">
+            <div class="card-body">
+              <h6>Total Students</h6>
+              <!-- <p>{{ totalStudents }}</p> -->
+              <P>0</P>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Second row -->
+    <div class="row pe-2 mt-3">
+      <div class="col-sm-12 text-center">
+        <div class="card-shadow">
+          <div class="card-body">
+            <h6 class="text-primary mb-4">List of Students</h6> 
+  
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="table table-hover mt-3 custom-table"> 
+                
+                <thead class="table-heading">
+                  <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Date Of Birth</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Student Number</th>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Grade</th>
+                  </tr>
+                </thead>
+                <!-- Table body -->
+                <tbody>
+                  <tr *ngFor="let student of allStudents">
+                    <td>{{ student.first_name }}</td>
+                    <td>{{ student.last_name }}</td>
+                    <td>{{ student.date_of_birth }}</td>
+                    <td>{{ student.sex }}</td>
+                    <td>{{ student.student_number }}</td>
+                    <td>{{ student.student_Id }}</td>
+                    <td>{{ student.grade }}</td>
+                    <td>
+                      <button type="button" class="btn btn-outline-secondary m-2">View</button>
+                      <button type="button" class="btn btn-outline-secondary m-2">Edit</button>
+                      <button type="button" class="btn btn-outline-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Add Student Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-primary" id="exampleModalLabel">Add Student</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Form -->
+            <!-- <form [formGroup]="studentDetailsForm" (ngSubmit)="addNewStudent()"> -->
+              <form [formGroup]="studentDetailsForm" (ngSubmit)="addNewStudent()">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="first_name" placeholder="First Name" formControlName="first_name">
+                <label for="first_name">First Name</label>
+                <div *ngIf="studentDetailsForm.get('first_name')?.invalid && studentDetailsForm.get('first_name')?.dirty" class="text-danger">
+                  First Name is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="last_name" placeholder="Last Name" formControlName="last_name">
+                <label for="last_name">Last Name</label>
+                <div *ngIf="studentDetailsForm.get('last_name')?.invalid && studentDetailsForm.get('last_name')?.dirty" class="text-danger">
+                  Last Name is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="date" class="form-control" id="date_of_birth" placeholder="Date Of Birth" formControlName="date_of_birth">
+                <label for="date_of_birth">Date Of Birth</label>
+                <div *ngIf="studentDetailsForm.get('date_of_birth')?.invalid && studentDetailsForm.get('date_of_birth')?.dirty" class="text-danger">
+                  Date Of Birth is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="sex" placeholder="Gender" formControlName="sex">
+                <label for="sex">Gender</label>
+                <div *ngIf="studentDetailsForm.get('sex')?.invalid && studentDetailsForm.get('sex')?.dirty" class="text-danger">
+                  Gender is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="student_number" placeholder="Student Number" formControlName="student_number">
+                <label for="student_number">Student Number</label>
+                <div *ngIf="studentDetailsForm.get('student_number')?.invalid && studentDetailsForm.get('student_number')?.dirty" class="text-danger">
+                  Student Number is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="student_Id" placeholder="ID Number" formControlName="student_Id">
+                <label for="student_Id">ID Number</label>
+                <div *ngIf="studentDetailsForm.get('student_Id')?.invalid && studentDetailsForm.get('student_Id')?.dirty" class="text-danger">
+                  ID Number is required.
+                </div>
+              </div>
+  
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="grade" placeholder="Grade" formControlName="grade">
+                <label for="student_Id">Grade</label>
+                <div *ngIf="studentDetailsForm.get('grade')?.invalid && studentDetailsForm.get('grade')?.dirty" class="text-danger">
+                  Grade is required.
+                </div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary mt-4" (click)="save()">Save</button>
+
+              <!-- <button type="submit" class="btn btn-primary">Add Student</button> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
